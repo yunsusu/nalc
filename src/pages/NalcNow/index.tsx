@@ -24,7 +24,7 @@ function NalcNow() {
       // xy가 정의되었을 때만 fetchData 호출
       fetchData();
     }
-  }, [date, time, xy]);
+  }, [date, key, time, xy]);
 
   useEffect(() => {
     const fetchLocationAndProcess = async () => {
