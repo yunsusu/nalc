@@ -4,6 +4,7 @@ import Data from "../../components/Nalc/Data/index.tsx";
 import { fetchWeather } from "../../lib/Weather/index.ts";
 import { getLocation } from "../../lib/utils/geo.ts";
 import { getPlaceNameByOSM } from "../../lib/maps/index.ts";
+import { useNavigate } from "react-router-dom";
 
 function NalcNow() {
   const [weather, setWeather] = useState<any>(); // 오타 수정 (setWearher -> setWeather)
@@ -11,6 +12,7 @@ function NalcNow() {
   const [time, setTime] = useState<string>(new Date().getHours() + "00");
   const [xy, setXy] = useState<{ x: number; y: number } | undefined>(); // 초기값 명확화
   const [place, setPlace] = useState<string>();
+  const navi = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,9 +45,13 @@ function NalcNow() {
     }
   }, [xy]); // xy 객체 자체를 의존성으로 사용
 
-  console.log(place);
+  const back = () => {
+    navi(-1);
+  };
+
   return (
     <S.Wrap>
+      <S.Back onClick={back}>뒤로가기</S.Back>
       <S.Title>{place}의 날씨</S.Title>
       <S.Time>
         기준 날짜 : {date} / 기준 시간 : {time}

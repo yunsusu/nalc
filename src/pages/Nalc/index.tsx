@@ -4,14 +4,22 @@ import Data from "../../components/Nalc/Data/index.tsx";
 import { fetchWeather } from "../../lib/Weather/index.ts";
 import { getLocation } from "../../lib/utils/geo.ts";
 import { getPlaceNameByOSM } from "../../lib/maps/index.ts";
+import { useNavigate } from "react-router-dom";
 
 function A() {
   const time = [`0600`, `0800`, `1000`, `1200`, `1400`, `1600`, `1800`, `2000`, `2200`];
   const [date, setDate] = useState(setDayYMD());
   const [place, setPlace] = useState();
+  const navi = useNavigate();
+
+  const back = () => {
+    navi(-1);
+  };
+
   return (
     <>
       <S.Wrap>
+        <S.Back onClick={back}>뒤로가기</S.Back>
         <S.Title>{place ? `${place}의 날씨` : "위치를 불러오는 중..."}</S.Title>
         <S.Time>기준 날짜 : {date}</S.Time>
         {time.map((item, index) => (

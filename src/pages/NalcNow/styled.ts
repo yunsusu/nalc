@@ -22,3 +22,7 @@ export const Time = styled.div`
 export const Loading = styled.div`
   font-size: 3rem;
 `;
+export const Back = styled.div`
+  font-size: 2rem;
+  cursor: pointer;
+`;
