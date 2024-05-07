@@ -45,7 +45,7 @@ function Nalc({ item, setPlace, date }) {
       }
     };
 
-    if (xy) {
+    if (xy && key) {
       fetchData();
     }
   }, [date, item, xy, key]);
