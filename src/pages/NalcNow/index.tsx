@@ -13,10 +13,11 @@ function NalcNow() {
   const [xy, setXy] = useState<{ x: number; y: number } | undefined>(); // 초기값 명확화
   const [place, setPlace] = useState<string>();
   const navi = useNavigate();
+  const key = process.env.REACT_APP_KEY;
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchWeather(date, time, xy);
+      const data = await fetchWeather(key, date, time, xy);
       setWeather(data.data.response.body.items.item);
     };
     if (xy) {

@@ -33,11 +33,12 @@ function A() {
 function Nalc({ item, setPlace, date }) {
   const [weather, setWeather] = useState();
   const [xy, setXy] = useState();
+  const key = process.env.REACT_APP_KEY;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchWeather(date, item, xy);
+        const data = await fetchWeather(key, date, item, xy);
         setWeather(data.data.response.body.items.item);
       } catch (error) {
         console.error("Failed to fetch weather:", error);
@@ -47,7 +48,7 @@ function Nalc({ item, setPlace, date }) {
     if (xy) {
       fetchData();
     }
-  }, [date, item, xy]);
+  }, [date, item, xy, key]);
 
   useEffect(() => {
     const fetchLocationAndProcess = async () => {
