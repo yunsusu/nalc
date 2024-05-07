@@ -1,7 +1,7 @@
 import axios from "../axios";
 
 export const fetchWeather = async (date, time, xy) => {
-  const key = "BCb9ReL6Z%2Fa72ys48yAIkW5lnTUJnQnVm3GUS%2BXMYn%2F8OGkkJCRdpOwziUHBUnRLFkPc3RxbL6TglYvzLS9CiA%3D%3D";
+  const key = process.env.REACT_APP_KEY;
   const gridCoords = toGrid(xy.x, xy.y);
 
   const res = await axios.get(
