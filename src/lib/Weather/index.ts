@@ -22,7 +22,7 @@ function toGrid(lat, lon) {
   const YO = 136; // 기준점 Y좌표(GRID)
 
   const DEGRAD = Math.PI / 180.0;
-  const RADDEG = 180.0 / Math.PI;
+  // const RADDEG = 180.0 / Math.PI;
 
   let re = RE / GRID;
   let slat1 = SLAT1 * DEGRAD;

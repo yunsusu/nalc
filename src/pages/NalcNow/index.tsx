@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function NalcNow() {
   const [weather, setWeather] = useState<any>(); // 오타 수정 (setWearher -> setWeather)
-  const [date, setDate] = useState<string>(setDayYMD()); // 날짜 상태 직접 관리
-  const [time, setTime] = useState<string>(new Date().getHours() + "00");
+  const [date] = useState<string>(setDayYMD()); // 날짜 상태 직접 관리
+  const [time] = useState<string>(new Date().getHours() + "00");
   const [xy, setXy] = useState<{ x: number; y: number } | undefined>(); // 초기값 명확화
   const [place, setPlace] = useState<string>();
   const navi = useNavigate();

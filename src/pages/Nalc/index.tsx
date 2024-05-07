@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function A() {
   const time = [`0600`, `0800`, `1000`, `1200`, `1400`, `1600`, `1800`, `2000`, `2200`];
-  const [date, setDate] = useState(setDayYMD());
+  const [date] = useState(setDayYMD());
   const [place, setPlace] = useState();
   const navi = useNavigate();
 

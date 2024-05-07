@@ -3,7 +3,7 @@ import Sky from "../../assets/img/sky.webp";
 
 export const Wrap = styled.div`
   width: 100vw;
-  /* height: 100vh; */
+  min-height: 100vh;
   background-image: url(${Sky});
   background-size: cover;
   display: flex;
