@@ -1,6 +1,6 @@
 import axios from "../axios";
 
-export const fetchWeather = async (key, date, time, xy) => {
+export const fetchWeather = async (key: any, date: any, time: any, xy: any) => {
   const gridCoords = toGrid(xy.x, xy.y);
 
   const res = await axios.get(

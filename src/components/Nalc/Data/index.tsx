@@ -11,10 +11,10 @@ interface WeatherItem {
 }
 
 function Data({ weather }: DataProps) {
-  if (!weather) return null; // 데이터가 없을 경우 아무것도 렌더링하지 않음
+  if (!weather) return <S.Category>error!</S.Category>;
 
   return (
-    <S.Wrap>
+    <S.Wrap sr={weather[0].category === "PTY" ? weather[0].obsrValue : null}>
       {weather.map((item, index) => (
         <>
           <S.Card key={index}>
@@ -33,21 +33,21 @@ export default Data;
 function renderCategory(item: WeatherItem) {
   switch (item.category) {
     case "PTY":
-      return `강수량 (${item.category}): `;
+      return `강수량 : `;
     case "REH":
-      return `습도 (${item.category}): `;
+      return `습도 : `;
     case "T1H":
-      return `기온 (${item.category}): `;
+      return `기온 : `;
     case "UUU":
-      return `동서바람성분 (${item.category}): `;
+      return `동서바람성분 : `;
     case "RN1":
-      return `1시간 강수량 (${item.category}): `;
+      return `1시간 강수량 : `;
     case "VVV":
-      return `남북바람성분 (${item.category}): `;
+      return `남북바람성분 : `;
     case "VEC":
-      return `풍향 (${item.category}): `;
+      return `풍향 : `;
     case "WSD":
-      return `풍속 (${item.category}): `;
+      return `풍속 : `;
     default:
       return null;
   }

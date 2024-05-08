@@ -19,12 +19,14 @@ function A() {
   return (
     <>
       <S.Wrap>
-        <S.Back onClick={back}>뒤로가기</S.Back>
-        <S.Title>{place ? `${place}의 날씨` : "위치를 불러오는 중..."}</S.Title>
-        <S.Time>기준 날짜 : {date}</S.Time>
+        <S.Inner>
+          <S.Back onClick={back}>뒤로가기</S.Back>
+          <S.Title>{place ? `${place}의 날씨` : "위치를 불러오는 중..."}</S.Title>
+          <S.Time>기준 날짜 : {date}</S.Time>
+        </S.Inner>
         {time.map((item, index) => (
           <Nalc item={item} key={index} setPlace={setPlace} date={date} />
-        ))}{" "}
+        ))}
       </S.Wrap>
     </>
   );
@@ -34,21 +36,6 @@ function Nalc({ item, setPlace, date }) {
   const [weather, setWeather] = useState();
   const [xy, setXy] = useState();
   const key = process.env.REACT_APP_KEY;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchWeather(key, date, item, xy);
-        setWeather(data.data.response.body.items.item);
-      } catch (error) {
-        console.error("Failed to fetch weather:", error);
-      }
-    };
-
-    if (xy && key) {
-      fetchData();
-    }
-  }, [date, item, xy, key]);
 
   useEffect(() => {
     const fetchLocationAndProcess = async () => {
@@ -68,6 +55,21 @@ function Nalc({ item, setPlace, date }) {
       getPlaceNameByOSM(xy.x, xy.y).then(setPlace);
     }
   }, [setPlace, xy]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchWeather(key, date, item, xy);
+        setWeather(data.data.response.body.items.item);
+      } catch (error) {
+        console.error("Failed to fetch weather:", error);
+      }
+    };
+
+    if (xy) {
+      fetchData();
+    }
+  }, [date, item, xy, key]);
 
   return (
     <>
