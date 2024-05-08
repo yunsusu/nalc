@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function NalcNow() {
   const [weather, setWeather] = useState<any>();
-  const [date] = useState<string>(setDayYMD());
-  const [time] = useState<string>(new Date().getHours() + "00");
+  const [date, setDate] = useState<string>();
+  const [time, setTime] = useState<string>();
   const [xy, setXy] = useState<{ x: number; y: number } | undefined>();
   const [place, setPlace] = useState<string>();
   const navi = useNavigate();
@@ -38,13 +38,21 @@ function NalcNow() {
     navi(-1);
   };
   useEffect(() => {
+    setDate(setDayYMD());
+    setTime(new Date().getHours() + "00");
+
     const fetchData = async () => {
-      const data = await fetchWeather(key, date, time, xy);
-      setWeather(data.data.response.body.items.item);
+      if (date && time && xy) {
+        const data = await fetchWeather(key, date, time, xy);
+        if (data?.data?.response?.body?.items?.item) {
+          setWeather(data.data.response.body.items.item);
+        } else {
+          console.error("Invalid data structure:", data);
+        }
+      }
     };
-    if (xy) {
-      fetchData();
-    }
+
+    fetchData();
   }, [date, key, time, xy]);
 
   return (

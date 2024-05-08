@@ -24,6 +24,9 @@ export const Inner = styled.div`
   & h1 {
     font-size: 3rem;
     margin-bottom: 5rem;
+    @media all and (max-width: 768px) {
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -45,8 +48,11 @@ export const Card = styled.a`
   /* background-position: center; */
   background-size: cover;
   & p {
-    font-size: 5rem;
+    font-size: 4rem;
     color: darkblue;
+    @media all and (max-width: 768px) {
+      font-size: 3rem;
+    }
   }
 `;
 

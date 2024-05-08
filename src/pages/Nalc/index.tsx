@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function A() {
   const time = [`0600`, `0800`, `1000`, `1200`, `1400`, `1600`, `1800`, `2000`, `2200`];
-  const [date] = useState(setDayYMD());
+  const [date, setDate] = useState<String>();
   const [place, setPlace] = useState();
   const navi = useNavigate();
 
@@ -25,14 +25,14 @@ function A() {
           <S.Time>기준 날짜 : {date}</S.Time>
         </S.Inner>
         {time.map((item, index) => (
-          <Nalc item={item} key={index} setPlace={setPlace} date={date} />
+          <Nalc item={item} key={index} setPlace={setPlace} date={date} setDate={setDate} />
         ))}
       </S.Wrap>
     </>
   );
 }
 
-function Nalc({ item, setPlace, date }) {
+function Nalc({ item, setPlace, date, setDate }) {
   const [weather, setWeather] = useState();
   const [xy, setXy] = useState();
   const key = process.env.REACT_APP_KEY;
@@ -57,19 +57,21 @@ function Nalc({ item, setPlace, date }) {
   }, [setPlace, xy]);
 
   useEffect(() => {
+    setDate(setDayYMD());
+
     const fetchData = async () => {
-      try {
+      if (date && xy) {
         const data = await fetchWeather(key, date, item, xy);
-        setWeather(data.data.response.body.items.item);
-      } catch (error) {
-        console.error("Failed to fetch weather:", error);
+        if (data?.data?.response?.body?.items?.item) {
+          setWeather(data.data.response.body.items.item);
+        } else {
+          console.error("Invalid data structure:", data);
+        }
       }
     };
 
-    if (xy) {
-      fetchData();
-    }
-  }, [date, item, xy, key]);
+    fetchData();
+  }, [date, key, xy]);
 
   return (
     <>

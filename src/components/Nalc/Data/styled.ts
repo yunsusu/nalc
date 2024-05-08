@@ -27,7 +27,7 @@ export const Card = styled.div`
   /* width: 50%; */
   border-radius: 16px;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   /* background-color: gray; */
   font-size: 2rem;
 

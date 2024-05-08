@@ -21,7 +21,7 @@ export const Inner = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background-color: rgba(222, 222, 222, 0.8);
+  background-color: rgba(222, 222, 222, 0.5);
   border-radius: 16px;
   padding: 5px;
 `;
