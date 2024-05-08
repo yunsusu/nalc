@@ -27,14 +27,26 @@ export const Inner = styled.div`
 `;
 export const Title = styled.div`
   font-size: 3rem;
+  @media all and (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 export const Time = styled.div`
   font-size: 1.6rem;
+  @media all and (max-width: 768px) {
+    font-size: 1.4rem;
+  }
 `;
 export const Loading = styled.div`
   font-size: 3rem;
+  @media all and (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 export const Back = styled.div`
   font-size: 2rem;
+  @media all and (max-width: 768px) {
+    font-size: 1.6rem;
+  }
   cursor: pointer;
 `;
