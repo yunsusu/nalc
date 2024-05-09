@@ -5,7 +5,7 @@ import Rain from "../../../assets/img/rain.jpeg";
 export const Wrap = styled.div`
   width: 100%;
   max-width: 60rem;
-  max-height: 30rem;
+  max-height: 50rem;
   height: 100%;
   border: 2px solid gray;
   background-image: ${(props) => (!props.sr ? `url(${Rain})` : `url(${Sun})`)};
@@ -25,6 +25,7 @@ export const Wrap = styled.div`
 `;
 export const Card = styled.div`
   /* width: 50%; */
+  height: 100%;
   border-radius: 16px;
   padding: 2rem;
   background-color: rgba(255, 255, 255, 0.8);
@@ -36,29 +37,27 @@ export const Card = styled.div`
     grid-row: 4/6;
   }
   &:nth-child(2) {
-    grid-column: 2/3;
-    grid-row: 3/4;
-    display: none;
+    grid-column: 4/5;
+    grid-row: 1/3;
   }
   &:nth-child(3) {
-    grid-column: 3/4;
+    grid-column: 4/5;
     grid-row: 3/4;
-    display: none;
   }
   &:nth-child(4) {
-    grid-column: 1/5;
+    grid-column: 1/4;
     grid-row: 1/4;
 
     & div {
       @media all and (max-width: 768px) {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
       font-size: 4rem;
     }
   }
   &:nth-child(5) {
-    grid-column: 1/2;
-    grid-row: 4/5;
+    grid-column: 3/4;
+    grid-row: 6/7;
     display: none;
   }
   &:nth-child(6) {
@@ -80,9 +79,9 @@ export const Category = styled.div`
   /* background-color: rgba(128, 128, 128, 0.5);
   border-radius: 12px; */
   /* padding: 5px; */
-  font-size: 2rem;
+  font-size: 2.5rem;
 
   @media all and (max-width: 768px) {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 `;

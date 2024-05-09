@@ -17,6 +17,7 @@ export const Wrap = styled.div`
 `;
 
 export const Inner = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +54,8 @@ export const Back = styled.div`
 export const Input = styled.input`
   font-size: 2rem;
   background-color: rgba(122, 122, 122, 0.15);
+  padding: 1rem;
+  border-radius: 5px;
 `;
 export const Btn = styled.button`
   font-size: 2rem;
