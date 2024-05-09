@@ -65,6 +65,7 @@ function NalcNow() {
 
   useEffect(() => {
     fetchPlaceName();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [xy]);
 
   const back = () => {
@@ -76,6 +77,7 @@ function NalcNow() {
     setTime(new Date().getHours() + "00");
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, key, time, xy]);
 
   return (

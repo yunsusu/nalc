@@ -71,7 +71,7 @@ function Nalc({ item, setPlace, date, setDate }) {
     };
 
     fetchData();
-  }, [date, key, xy]);
+  }, [date, item, key, setDate, xy]);
 
   return (
     <>
