@@ -49,7 +49,7 @@ export const Card = styled.a`
   background-size: cover;
   & p {
     font-size: 4rem;
-    color: darkblue;
+    color: black;
     @media all and (max-width: 768px) {
       font-size: 3rem;
     }

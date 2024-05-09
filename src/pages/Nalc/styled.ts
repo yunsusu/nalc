@@ -26,6 +26,16 @@ export const Inner = styled.div`
   border-radius: 16px;
   padding: 5px;
 `;
+export const GMap = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 5px;
+  & > div {
+    margin-top: 3rem;
+  }
+`;
 export const Title = styled.div`
   font-size: 3rem;
   @media all and (max-width: 768px) {
@@ -33,9 +43,9 @@ export const Title = styled.div`
   }
 `;
 export const Time = styled.div`
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   @media all and (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
 `;
 export const Loading = styled.div`

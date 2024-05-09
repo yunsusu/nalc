@@ -17,7 +17,7 @@ export const Wrap = styled.div`
 `;
 
 export const Inner = styled.div`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
