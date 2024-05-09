@@ -56,5 +56,6 @@ export const Input = styled.input`
 `;
 export const Btn = styled.button`
   font-size: 2rem;
+  cursor: pointer;
   background-color: rgba(122, 122, 122, 0.15);
 `;
