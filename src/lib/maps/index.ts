@@ -1,15 +1,26 @@
-import axios from "axios";
+import axios from "../axios";
 
-export function getPlaceNameByOSM(latitude, longitude) {
+export async function getPlaceNameByOSM(latitude, longitude) {
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-  return axios
-    .get(url)
-    .then((response) => {
-      return response.data.display_name; // 전체 주소
-    })
-    .catch((error) => {
-      console.error("Error during OSM geocoding:", error);
-      return "Location name not found";
-    });
+  try {
+    const response = await axios.get(url);
+    const { city, town } = response.data.address;
+    return `${city} ${town}`;
+  } catch (error) {
+    console.error("Error fetching place name:", error);
+    return "";
+  }
+}
+export async function getPlace(address) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`;
+
+  try {
+    const response = await axios.get(url);
+    const box = { x: response.data[0].lat, y: response.data[0].lon };
+    return box;
+  } catch (error) {
+    console.error("Error fetching place name:", error);
+    return "";
+  }
 }

@@ -50,3 +50,11 @@ export const Back = styled.div`
   }
   cursor: pointer;
 `;
+export const Input = styled.input`
+  font-size: 2rem;
+  background-color: rgba(122, 122, 122, 0.15);
+`;
+export const Btn = styled.button`
+  font-size: 2rem;
+  background-color: rgba(122, 122, 122, 0.15);
+`;
