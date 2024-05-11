@@ -28,12 +28,23 @@ export const Inner = styled.div`
 `;
 export const GMap = styled.div`
   width: 100%;
-  display: grid;
+  display: flex;
+  overflow: scroll;
+
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr); */
   gap: 5px;
   & > div {
+    width: 30rem;
+    width: 100%;
     margin-top: 3rem;
+    & > div:last-child {
+      height: 30rem;
+      & div {
+        font-size: 14px;
+      }
+    }
   }
 `;
 export const Title = styled.div`

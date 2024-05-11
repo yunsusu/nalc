@@ -101,12 +101,14 @@ function Nalc({ item, setPlace, date, setDate }) {
 
     fetchData();
   }, [date, item, key, setDate, xy]);
-
+  const now = new Date().getHours() + "00";
   return (
-    <div>
-      <S.Time>기준 시간 : {item}</S.Time>
-      {xy === undefined ? <S.Loading>...Loading</S.Loading> : <Data weather={weather} />}
-    </div>
+    item <= now && (
+      <div>
+        <S.Time>기준 시간 : {item}</S.Time>
+        {xy === undefined ? <S.Loading>날씨를 불러오는 중...</S.Loading> : <Data weather={weather} />}
+      </div>
+    )
   );
 }
 

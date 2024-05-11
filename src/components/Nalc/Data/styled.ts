@@ -18,7 +18,7 @@ export const Wrap = styled.div`
   padding: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   /* justify-content: center;
   flex-wrap: wrap; */
   gap: 0.5rem;
@@ -34,20 +34,22 @@ export const Card = styled.div`
   font-size: 2rem;
 
   &:nth-child(1) {
-    grid-column: 3/5;
-    grid-row: 4/6;
+    grid-column: 4/5;
+    grid-row: 3/4;
   }
   &:nth-child(2) {
     grid-column: 4/5;
-    grid-row: 1/3;
+    grid-row: 1/2;
   }
   &:nth-child(3) {
     grid-column: 4/5;
-    grid-row: 3/4;
+    grid-row: 2/3;
+    display: none;
   }
   &:nth-child(4) {
     grid-column: 1/4;
     grid-row: 1/4;
+    min-width: 10rem;
 
     & div {
       @media all and (max-width: 768px) {
@@ -72,8 +74,8 @@ export const Card = styled.div`
     display: none;
   }
   &:nth-child(8) {
-    grid-column: 1/3;
-    grid-row: 4/6;
+    grid-column: 4/5;
+    grid-row: 2/3;
   }
 `;
 export const Category = styled.div`

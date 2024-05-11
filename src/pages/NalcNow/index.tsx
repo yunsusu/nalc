@@ -6,6 +6,7 @@ import { getLocation } from "../../lib/utils/geo.ts";
 import { getPlaceNameByOSM, getPlace } from "../../lib/maps/index.ts";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
 
 type Inputs = {
   place: string;
@@ -20,10 +21,8 @@ function NalcNow() {
   const navi = useNavigate();
   const key = process.env.REACT_APP_KEY;
   const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    searchAdress(data);
-  };
-  const searchAdress = async (data) => {
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const box = await getPlace(data.place);
       setXy(box);
@@ -32,14 +31,10 @@ function NalcNow() {
     }
   };
 
-  const fetchLocationAndProcess = async () => {
-    try {
-      const box = await getLocation();
-      setXy(box[0]);
-    } catch (error) {
-      console.error("Failed to get location:", error);
-    }
-  };
+  const { data: location, isSuccess: locationSuccess } = useQuery({
+    queryKey: [`location`],
+    queryFn: () => getLocation(),
+  });
 
   const fetchPlaceName = async () => {
     if (xy) {
@@ -48,20 +43,17 @@ function NalcNow() {
     }
   };
 
-  const fetchData = async () => {
-    if (date && time && xy) {
-      const data = await fetchWeather(key, date, time, xy);
-      if (data?.data?.response?.body?.items?.item) {
-        setWeather(data.data.response.body.items.item);
-      } else {
-        console.error("Invalid data structure:", data);
-      }
-    }
-  };
+  const { data: weat, isSuccess } = useQuery({
+    queryKey: [`weather`, date, time, xy],
+    queryFn: () => fetchWeather(key, date, time, xy),
+    enabled: !!date && !!time && !!xy,
+  });
 
   useEffect(() => {
-    fetchLocationAndProcess();
-  }, []);
+    if (locationSuccess && location) {
+      setXy(location[0]);
+    }
+  }, [location, locationSuccess]);
 
   useEffect(() => {
     fetchPlaceName();
@@ -75,10 +67,13 @@ function NalcNow() {
   useEffect(() => {
     setDate(setDayYMD());
     setTime(new Date().getHours() + "00");
+  }, []);
 
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [date, key, time, xy]);
+  useEffect(() => {
+    if (isSuccess && weat?.data?.response?.body?.items?.item) {
+      setWeather(weat.data.response.body.items.item);
+    }
+  }, [isSuccess, weat]);
 
   return (
     <S.Wrap>
@@ -95,7 +90,7 @@ function NalcNow() {
           기준 날짜 : {date} / 기준 시간 : {time}
         </S.Time>
       </S.Inner>
-      {xy === undefined ? <S.Loading>...Loading</S.Loading> : <Data weather={weather} />}
+      {weather === undefined ? <S.Loading>날씨를 불러오는 중...</S.Loading> : <Data weather={weather} />}
     </S.Wrap>
   );
 }
