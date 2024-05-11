@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Sun from "../../../assets/img/sun.jpeg";
-import Rain from "../../../assets/img/rain.jpeg";
+// import Rain from "../../../assets/img/rain.jpeg";
+import Rain from "../../../assets/img/cloud.jpeg";
 
 export const Wrap = styled.div`
   width: 100%;
@@ -8,7 +9,7 @@ export const Wrap = styled.div`
   max-height: 50rem;
   height: 100%;
   border: 2px solid gray;
-  background-image: ${(props) => (!props.sr ? `url(${Rain})` : `url(${Sun})`)};
+  background-image: ${(props) => (props.sr ? `url(${Rain})` : `url(${Sun})`)};
   background-color: rgba(0, 0, 0, 0.2);
   background-blend-mode: multiply;
   background-size: cover;

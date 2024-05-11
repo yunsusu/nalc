@@ -12,9 +12,8 @@ interface WeatherItem {
 
 function Data({ weather }: DataProps) {
   if (!weather) return <S.Category>error!</S.Category>;
-
   return (
-    <S.Wrap sr={weather[0].category === "PTY" ? weather[0].obsrValue : null}>
+    <S.Wrap sr={weather[0].category === "PTY" && Number(weather[0].obsrValue) >= 1 ? true : false}>
       {weather.map((item, index) => (
         <>
           <S.Card key={index}>
