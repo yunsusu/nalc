@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "./styled.ts";
+import * as S from "./data.ts";
 
 interface DataProps {
   weather?: any[];
@@ -8,7 +8,6 @@ interface DataProps {
 interface WeatherItem {
   baseDate: string;
   category: string;
-  obsrValue: string;
 }
 
 function Data({ weather }: DataProps) {

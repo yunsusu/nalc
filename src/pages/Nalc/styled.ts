@@ -29,7 +29,7 @@ export const Inner = styled.div`
 export const GMap = styled.div`
   width: 100%;
   display: flex;
-  overflow: scroll;
+  overflow-x: scroll;
 
   /* display: grid;
   grid-template-columns: repeat(2, 1fr);
